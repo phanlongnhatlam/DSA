@@ -40,8 +40,9 @@ int main() {
     left = 50;
     right = 150;
     // Màu đỏ : đã sắp xếp
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < n-1; i++)
     {
+        int min_pos = i;
         setfillstyle(SOLID_FILL, RED);
         bar(left, top, right, bottom);  
         // Chèn số vào giữa các hình chữ nhật các giá trị của mảng   
@@ -51,11 +52,11 @@ int main() {
         outtextxy(giatri_x, giatri_y, giatri);
 
         rectangle(left, top, right, bottom);
-        delay(350);   
+        delay(500);   
         left += 150 - 50;
         right += 150 - 50;
         // Đổ màu vàng và trở lại màu đen cho từng ô
-        for (int j = i+1; j < 8; j++) {
+        for (int j = i+1; j < n; j++) {
             // Đổ màu nền vàng
             setfillstyle(SOLID_FILL, YELLOW);
             bar(left, top, right, bottom);
@@ -69,7 +70,7 @@ int main() {
             // Vẽ lại đường viền sau khi đổ màu
             rectangle(left, top, right, bottom);
             // Đợi một khoảng thời gian ngắn
-            delay(350);
+            delay(500);
             // Đổ màu nền đen
             setfillstyle(SOLID_FILL, BLACK);
             bar(left, top, right, bottom);
@@ -85,6 +86,12 @@ int main() {
             // Di chuyển tọa độ hình chữ nhật sang phải cho hình chữ nhật tiếp theo
             left += 150 - 50;
             right += 150 - 50;
+            /*===============================*/
+            /*Selection Sort*/
+            if (a[j]<a[min_pos]) {
+                min_pos = j;
+            }
+            /*===============================*/
             // Nhấp nháy phần tử cuối cùng
             if (i == 6 && j == 7) {
                 left -= 150 - 50;
@@ -127,9 +134,26 @@ int main() {
                 }
             }
         }
+        int temp = a[min_pos];
+        a[min_pos] = a[i];
+        a[i] = temp;    
+     // Vẽ lại
+        left = 50 + (i ) * (150 - 50);
+        right = 150 + (i) * (150 - 50);
+        setfillstyle(SOLID_FILL, GREEN);
+        bar(left, top, right, bottom);
+        // Chèn số vào giữa các hình chữ nhật các giá trị của mảng   
+        sprintf_s(giatri, sizeof(giatri), "%d", a[i]);
+        giatri_x = left + (right - left) / 2 - 5;
+        giatri_y = top + (bottom - top) / 2.5;
+        outtextxy(giatri_x, giatri_y, giatri);
+        rectangle(left, top, right, bottom);
+        
+
         left = 50 + (i + 1) * (150-50);
         right = 150 + (i + 1) * (150-50);
     }
+    for (int i = 0; i < n; i++)cout << a[i] << " ";
     getch();
     closegraph();
     return 0;
