@@ -1,24 +1,35 @@
-﻿#include "graphics.h"
+#include "graphics.h"
 #include <windows.h> 
 #include <iostream>
+#include <cstdlib>
 #pragma comment(lib, "graphics.lib")
 using namespace std;
 int main() {
     initwindow(1000, 500, "chuong trinh");
+// random giá trị cho mảng
+    const int n = 8;
+    int a[n] = {};
+    for (int i = 0; i < n; i++) {
+        a[i] = rand() % 50;
+    }
+    for (int i = 0; i < n; i++)cout << a[i] << " ";
     int left = 50, top = 100;
     int right = 150, bottom = 150;
-
+    char giatri[10];
+    char text[10];
     // Vẽ các hình chữ nhật và đánh số thứ tự
     for (int i = 0; i < 8; i++) {
         // Vẽ hình chữ nhật
         rectangle(left, top, right, bottom);
-
+        // Chèn số vào giữa các hình chữ nhật các giá trị của mảng   
+        sprintf_s(giatri, sizeof(giatri), "%d", a[i]);
+        double giatri_x = left + (right - left) / 2-5;
+        double giatri_y = top + (bottom - top) / 2.5; 
+        outtextxy(giatri_x,giatri_y, giatri);
         // Đánh số thứ tự
-        char text[10];
         sprintf_s(text, sizeof(text), "%d", i ); // Số thứ tự bắt đầu từ 0
         int text_x = left + (right - left) / 2 - 5; // Căn giữa theo trục x
         int text_y = bottom + 10; // Cách hình chữ nhật một khoảng
-
         outtextxy(text_x, text_y, text);
 
         // Di chuyển tọa độ hình chữ nhật sang phải cho hình chữ nhật tiếp theo
@@ -32,7 +43,13 @@ int main() {
     for (int i = 0; i < 7; i++)
     {
         setfillstyle(SOLID_FILL, RED);
-        bar(left, top, right, bottom);
+        bar(left, top, right, bottom);  
+        // Chèn số vào giữa các hình chữ nhật các giá trị của mảng   
+        sprintf_s(giatri, sizeof(giatri), "%d", a[i]);
+        int giatri_x = left + (right - left) / 2 - 5;
+        int giatri_y = top + (bottom - top) / 2.5;
+        outtextxy(giatri_x, giatri_y, giatri);
+
         rectangle(left, top, right, bottom);
         delay(350);   
         left += 150 - 50;
@@ -42,6 +59,13 @@ int main() {
             // Đổ màu nền vàng
             setfillstyle(SOLID_FILL, YELLOW);
             bar(left, top, right, bottom);
+
+            // Chèn số vào giữa các hình chữ nhật các giá trị của mảng   
+            sprintf_s(giatri, sizeof(giatri), "%d", a[j]);
+            double giatri_x = left + (right - left) / 2 - 5;
+            double giatri_y = top + (bottom - top) / 2.5;
+            outtextxy(giatri_x, giatri_y, giatri);
+
             // Vẽ lại đường viền sau khi đổ màu
             rectangle(left, top, right, bottom);
             // Đợi một khoảng thời gian ngắn
@@ -49,6 +73,13 @@ int main() {
             // Đổ màu nền đen
             setfillstyle(SOLID_FILL, BLACK);
             bar(left, top, right, bottom);
+
+            // Chèn số vào giữa các hình chữ nhật các giá trị của mảng   
+            sprintf_s(giatri, sizeof(giatri), "%d", a[j]);
+             giatri_x = left + (right - left) / 2 - 5;
+             giatri_y = top + (bottom - top) / 2.5;
+            outtextxy(giatri_x, giatri_y, giatri);
+
             // Vẽ lại đường viền sau khi đổ màu
             rectangle(left, top, right, bottom);
             // Di chuyển tọa độ hình chữ nhật sang phải cho hình chữ nhật tiếp theo
@@ -62,14 +93,35 @@ int main() {
                 {
                     setfillstyle(SOLID_FILL, GREEN);
                     bar(left, top, right, bottom);
+
+                    // Chèn số vào giữa các hình chữ nhật các giá trị của mảng   
+                    sprintf_s(giatri, sizeof(giatri), "%d", a[j]);
+                     giatri_x = left + (right - left) / 2 - 5;
+                     giatri_y = top + (bottom - top) / 2.5;
+                    outtextxy(giatri_x, giatri_y, giatri);
+
                     rectangle(left, top, right, bottom);
                     delay(150);
                     setfillstyle(SOLID_FILL, BLACK);
                     bar(left, top, right, bottom);
+
+                    // Chèn số vào giữa các hình chữ nhật các giá trị của mảng   
+                    sprintf_s(giatri, sizeof(giatri), "%d", a[j]);
+                     giatri_x = left + (right - left) / 2 - 5;
+                     giatri_y = top + (bottom - top) / 2.5;
+                    outtextxy(giatri_x, giatri_y, giatri);
+
                     rectangle(left, top, right, bottom);
                     delay(150);
                     setfillstyle(SOLID_FILL, GREEN);
                     bar(left, top, right, bottom);
+
+                    // Chèn số vào giữa các hình chữ nhật các giá trị của mảng   
+                    sprintf_s(giatri, sizeof(giatri), "%d", a[j]);
+                     giatri_x = left + (right - left) / 2 - 5;
+                     giatri_y = top + (bottom - top) / 2.5;
+                    outtextxy(giatri_x, giatri_y, giatri);
+
                     rectangle(left, top, right, bottom);
                     delay(150);
                 }
