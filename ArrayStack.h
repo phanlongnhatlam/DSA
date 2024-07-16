@@ -30,6 +30,6 @@ struct ArrayStack
 		}
 	}
 	int ArrayStack::Pop() {
-			return S[top--];
+		return S[top--];
 	}
 };
