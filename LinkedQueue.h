@@ -40,6 +40,7 @@ struct LinkedQueue {
 	{
 		Node*tmp = front;
 		int x = front->info;
+		front=front->next;
 		if (front == NULL)
 		{
 			rear = NULL;
